@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>瑶的个人网站</title>
 
     <link rel="stylesheet" href="style.css">
@@ -10,20 +13,30 @@
 
 <body>
 
-    <!-- 顶部导航栏 -->
-    <nav>
-        <h2>瑶的个人网站</h2>
+    <!-- 导航栏 -->
 
-        <div>
-            <a href=" ">首页</a >
-            <a href="#">我的项目</a >
-            <a href="#">学习记录</a >
+    <nav>
+
+        <div class="logo">
+            瑶的个人网站
         </div>
+
+        <div class="nav-links">
+
+            <a href=" ">首页</a >
+
+            <a href="#about">关于我</a >
+
+            <a href="#projects">我的项目</a >
+
+        </div>
+
     </nav>
 
 
     <!-- 首页 -->
-    <section class="hero">
+
+    <section id="home" class="hero">
 
         <h1>你好，我是瑶 👋</h1>
 
@@ -31,40 +44,83 @@
             Python · OpenCV · AI · 网页开发
         </p >
 
-        <button onclick="goToProjects()">了解我的项目</button>
+        <button onclick="goToProjects()">
+            查看我的项目
+        </button>
 
     </section>
 
 
-    <!-- 项目区域 -->
-    <section class="projects" id="projects">
+    <!-- 关于我 -->
+
+    <section id="about" class="about">
+
+        <h2>关于我</h2>
+
+        <p>
+            我正在学习 Python、OpenCV、人工智能和网页开发。
+        </p >
+
+        <p>
+            希望通过不断学习，把自己的想法真正做成项目。
+        </p >
+
+    </section>
+
+
+    <!-- 项目 -->
+
+    <section id="projects" class="projects">
 
         <h2>我的项目</h2>
 
         <div class="project-container">
 
+
             <div class="project-card">
-                <h3>🤖 AI 项目</h3>
+
+                <div class="icon">
+                    🤖
+                </div>
+
+                <h3>AI 项目</h3>
+
                 <p>
                     学习人工智能，并尝试开发自己的 AI 应用。
                 </p >
+
             </div>
 
 
             <div class="project-card">
-                <h3>👁 OpenCV</h3>
+
+                <div class="icon">
+                    👁️
+                </div>
+
+                <h3>OpenCV</h3>
+
                 <p>
-                    学习计算机视觉、人脸检测和人脸识别。
+                    学习计算机视觉、人脸检测和图像处理。
                 </p >
+
             </div>
 
 
             <div class="project-card">
-                <h3>🔐 AI 智能门禁</h3>
+
+                <div class="icon">
+                    🔐
+                </div>
+
+                <h3>AI 智能门禁</h3>
+
                 <p>
-                    未来尝试开发一个 AI 智能住宅门禁系统。
+                    未来开发一个 AI 智能住宅门禁系统。
                 </p >
+
             </div>
+
 
         </div>
 
@@ -72,9 +128,15 @@
 
 
     <!-- 页脚 -->
+
     <footer>
-        <p>© 2026 瑶的个人网站</p >
+
+        <p>
+            © 2026 瑶的个人网站
+        </p >
+
     </footer>
+
 
     <script src="script.js"></script>
 
