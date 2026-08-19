@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>登录 - 瑶的个人网站</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+
+            background-color: #f5f5f5;
+        }
+
+
+        .login-box {
+            width: 350px;
+
+            padding: 40px;
+
+            background-color: white;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+            text-align: center;
+        }
+
+
+        .login-box h1 {
+            margin-bottom: 10px;
+        }
+
+
+        .login-box p {
+            color: #777;
+
+            margin-bottom: 30px;
+        }
+
+
+        #password {
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+
+        #password:focus {
+            border-color: #555;
+        }
+
+
+        button {
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background-color: #333;
+
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+
+        button:hover {
+            background-color: #555;
+        }
+
+
+        #message {
+            margin-top: 15px;
+
+            color: #d33;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-box">
+
+        <h1>🔐</h1>
+
+        <h2>豪情在天的个人网站</h2>
+
+        <p>请输入访问密码</p >
+
+
+        <input
+            type="password"
+            id="password"
+            placeholder="请输入密码"
+        >
+
+
+        <button onclick="login()">
+            进入网站
+        </button>
+
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <script>
+
+        function login() {
+
+            const password =
+                document.getElementById("password").value;
+
+
+            // 临时密码
+            const correctPassword = "070520";
+
+
+            if (password === correctPassword) {
+
+                window.location.href = "index.html";
+
+            } else {
+
+                document.getElementById("message").textContent =
+                    "密码错误，请重新输入。";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
