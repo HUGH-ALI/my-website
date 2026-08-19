@@ -8,6 +8,12 @@
 
     <title>豪情在天的个人网站</title>
 
+    <script>
+    if (sessionStorage.getItem("loggedIn") !== "true") {
+        window.location.href = "login.html";
+    }
+    </script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
