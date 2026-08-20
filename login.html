@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>登录 - 豪情在天的个人网站</title>
+    <title>登录 - 瑶的个人网站</title>
 
     <style>
 
@@ -15,6 +15,7 @@
 
         body {
             margin: 0;
+
             min-height: 100vh;
 
             display: flex;
@@ -28,6 +29,7 @@
 
         .login-box {
             width: 350px;
+
             padding: 40px;
 
             background-color: white;
@@ -40,11 +42,14 @@
         }
 
         .login-box h1 {
+            font-size: 45px;
+
             margin-bottom: 10px;
         }
 
         .login-box p {
             color: #777;
+
             margin-bottom: 30px;
         }
 
@@ -60,6 +65,10 @@
             font-size: 16px;
 
             outline: none;
+        }
+
+        #password:focus {
+            border-color: #555;
         }
 
         button {
@@ -88,6 +97,7 @@
 
         #message {
             margin-top: 15px;
+
             color: #d33;
         }
 
@@ -102,7 +112,7 @@
 
         <h1>🔐</h1>
 
-        <h2>豪情在天的个人网站</h2>
+        <h2>瑶的个人网站</h2>
 
         <p>请输入访问密码</p >
 
@@ -128,18 +138,21 @@
             const password =
                 document.getElementById("password").value;
 
-            const correctPassword = "070520";
+            const correctPassword = "123456";
 
             if (password === correctPassword) {
 
-                sessionStorage.setItem("loggedIn", "true");
+                sessionStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
 
                 window.location.href = "./index.html";
 
             } else {
 
                 document.getElementById("message").textContent =
-                    "𝑪𝒊𝒂𝒍𝒍𝒐～(∠・ω< )⌒☆密码是你生日哦。";
+                    "密码错误，请重新输入。";
 
             }
 

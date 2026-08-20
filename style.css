@@ -1,3 +1,7 @@
+/* =========================
+   全局设置
+   ========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -9,24 +13,44 @@ html {
 body {
     margin: 0;
 
-    font-family: Arial, "Microsoft YaHei", sans-serif;
+    font-family:
+        Arial,
+        "Microsoft YaHei",
+        sans-serif;
 
-    background-color: #f5f5f5;
+    color: #222;
 
-    color: #333;
+    overflow-x: hidden;
+
+
+    /* =====================
+       固定全屏背景
+       ===================== */
+
+    background-image: url("images/bg.jpg");
+
+    background-size: cover;
+
+    background-position: center center;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
 }
 
 
-/* ====================
+/* =========================
    导航栏
-   ==================== */
+   ========================= */
 
 nav {
+
     position: sticky;
 
     top: 0;
 
-    z-index: 100;
+    z-index: 1000;
+
 
     display: flex;
 
@@ -34,40 +58,87 @@ nav {
 
     align-items: center;
 
-    padding: 20px 8%;
 
-    background-color: white;
+    padding: 18px 8%;
 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    /* 毛玻璃 */
+
+    background:
+        rgba(255, 255, 255, 0.30);
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.40);
+
+
+    box-shadow:
+        0 4px 20px
+        rgba(0, 0, 0, 0.08);
 }
 
+
+/* 网站名字 */
+
 .logo {
+
     font-size: 22px;
 
     font-weight: bold;
+
+    color: #222;
 }
 
+
+/* 导航菜单 */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
 .nav-links a {
-    margin-left: 30px;
 
     text-decoration: none;
 
-    color: #333;
+    color: #222;
 
     font-size: 16px;
+
+    transition:
+        0.2s;
 }
+
 
 .nav-links a:hover {
+
     color: #666;
+
+    transform:
+        translateY(-2px);
 }
 
 
-/* ====================
+/* =========================
    首页
-   ==================== */
+   ========================= */
 
 .hero {
-    min-height: 600px;
+
+    min-height: 700px;
+
 
     display: flex;
 
@@ -77,181 +148,692 @@ nav {
 
     align-items: center;
 
+
     text-align: center;
 
+
     padding: 80px 20px;
-
-    background-image:
-        linear-gradient(
-            rgba(255, 255, 255, 0.65),
-            rgba(255, 255, 255, 0.65)
-        ),
-        url("images/bg.jpg");
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
 }
+
+
+/* 主标题 */
 
 .hero h1 {
-    font-size: 52px;
+
+    font-size: 56px;
 
     margin: 0 0 20px;
+
+
+    color: #111;
+
+
+    text-shadow:
+        0 3px 15px
+        rgba(255, 255, 255, 0.8);
 }
+
+
+/* 副标题 */
 
 .hero p {
+
     font-size: 22px;
 
-    color: #666;
+    color: #333;
+
+
+    text-shadow:
+        0 2px 10px
+        rgba(255, 255, 255, 0.8);
 }
 
-.hero button {
-    margin-top: 30px;
 
-    padding: 14px 30px;
+/* 查看项目按钮 */
+
+.hero button {
+
+    margin-top: 35px;
+
+    padding:
+        15px 35px;
+
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 12px;
 
-    background-color: #333;
+
+    background:
+        rgba(20, 20, 20, 0.85);
+
 
     color: white;
 
+
     font-size: 17px;
 
+
     cursor: pointer;
+
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.25);
+
+
+    transition:
+        0.25s;
 }
+
 
 .hero button:hover {
-    background-color: #555;
+
+    transform:
+        translateY(-4px);
+
+
+    background:
+        rgba(0, 0, 0, 0.95);
+
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.30);
 }
 
 
-/* ====================
+/* =========================
    关于我
-   ==================== */
+   ========================= */
 
 .about {
-    max-width: 900px;
 
-    margin: auto;
+    padding:
+        100px 8%;
 
-    padding: 90px 20px;
 
     text-align: center;
+
+
+    background:
+        transparent;
 }
 
-.about h2,
-.projects h2 {
-    font-size: 36px;
+
+.about h2 {
+
+    font-size: 40px;
 
     margin-bottom: 30px;
+
+
+    color: #111;
+
+
+    text-shadow:
+        0 3px 15px
+        rgba(255, 255, 255, 0.9);
 }
 
-.about p {
+
+.about > p {
+
     font-size: 18px;
 
     line-height: 1.8;
 
-    color: #666;
+    color: #333;
+
+
+    text-shadow:
+        0 2px 10px
+        rgba(255, 255, 255, 0.8);
 }
 
 
-/* ====================
-   项目
-   ==================== */
+/* =========================
+   三个毛玻璃卡片
+   ========================= */
 
-.projects {
-    padding: 90px 8%;
+.about-container {
 
-    text-align: center;
-
-    background-color: #eeeeee;
-}
-
-.project-container {
     display: flex;
 
     justify-content: center;
 
-    gap: 25px;
+    gap: 30px;
+
+
+    margin-top: 60px;
+
 
     flex-wrap: wrap;
 }
 
-.project-card {
-    width: 280px;
+
+.about-card {
+
+    position: relative;
+
+
+    width: 290px;
+
+    min-height: 250px;
+
 
     padding: 35px 25px;
 
-    background-color: white;
 
-    border-radius: 15px;
+    /*
+       毛玻璃核心
+    */
 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    background:
+        rgba(255, 255, 255, 0.30);
 
-    transition: transform 0.2s;
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+
+    /*
+       玻璃边框
+    */
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+
+    border-radius: 20px;
+
+
+    /*
+       阴影
+    */
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.15);
+
+
+    text-decoration: none;
+
+    color: #222;
+
+
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
 }
 
-.project-card:hover {
-    transform: translateY(-8px);
+
+/* 鼠标放上去 */
+
+.about-card:hover {
+
+    transform:
+        translateY(-12px)
+        scale(1.02);
+
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.22);
 }
 
-.icon {
-    font-size: 45px;
+
+/* 图标 */
+
+.about-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 20px;
 }
 
-.project-card h3 {
+
+/* 标题 */
+
+.about-card h3 {
+
     font-size: 23px;
+
+    margin:
+        10px 0 15px;
 }
 
-.project-card p {
-    color: #666;
+
+/* 描述 */
+
+.about-card p {
+
+    font-size: 16px;
 
     line-height: 1.7;
+
+    color: #444;
 }
 
 
-/* ====================
-   页脚
-   ==================== */
+/* 点击进入 */
 
-footer {
-    padding: 30px;
+.read-more {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    color: #333;
+}
+
+
+/* =========================
+   我的项目
+   ========================= */
+
+.projects {
+
+    padding:
+        100px 8%;
+
 
     text-align: center;
 
-    background-color: #222;
+
+    background:
+        transparent;
+}
+
+
+.projects h2 {
+
+    font-size: 40px;
+
+    margin-bottom: 50px;
+
+
+    color: #111;
+
+
+    text-shadow:
+        0 3px 15px
+        rgba(255, 255, 255, 0.9);
+}
+
+
+/* 项目容器 */
+
+.project-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+}
+
+
+/* 项目卡片 */
+
+.project-card {
+
+    width: 290px;
+
+
+    padding:
+        40px 30px;
+
+
+    /*
+       毛玻璃
+    */
+
+    background:
+        rgba(255, 255, 255, 0.30);
+
+
+    backdrop-filter:
+        blur(15px);
+
+    -webkit-backdrop-filter:
+        blur(15px);
+
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+
+    border-radius: 20px;
+
+
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.15);
+
+
+    transition:
+        0.3s;
+}
+
+
+.project-card:hover {
+
+    transform:
+        translateY(-12px);
+
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+/* 项目图标 */
+
+.icon {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+
+.project-card h3 {
+
+    font-size: 23px;
+}
+
+
+.project-card p {
+
+    color: #444;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   子页面
+   ========================= */
+
+.sub-page {
+
+    max-width: 900px;
+
+
+    min-height: 70vh;
+
+
+    margin:
+        70px auto;
+
+
+    padding:
+        55px;
+
+
+    /*
+       毛玻璃页面
+    */
+
+    background:
+        rgba(255, 255, 255, 0.35);
+
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.60);
+
+
+    border-radius: 25px;
+
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+.sub-page h1 {
+
+    text-align: center;
+
+    font-size: 42px;
+
+    margin-bottom: 45px;
+}
+
+
+.sub-page h2 {
+
+    margin-top: 35px;
+
+    font-size: 25px;
+}
+
+
+.sub-page p {
+
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    color: #444;
+}
+
+
+/* =========================
+   返回首页
+   ========================= */
+
+.back-home {
+
+    display: inline-block;
+
+
+    margin-top: 35px;
+
+
+    padding:
+        13px 28px;
+
+
+    border-radius: 10px;
+
+
+    background:
+        rgba(20, 20, 20, 0.85);
+
+
+    color: white;
+
+
+    text-decoration: none;
+
+
+    transition:
+        0.25s;
+}
+
+
+.back-home:hover {
+
+    transform:
+        translateY(-3px);
+
+
+    background:
+        rgba(0, 0, 0, 0.95);
+}
+
+
+/* =========================
+   页脚
+   ========================= */
+
+footer {
+
+    padding: 35px;
+
+
+  text-align: center;
+
+
+    background:
+        rgba(20, 20, 20, 0.60);
+
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
 
     color: white;
 }
 
 
-/* ====================
-   手机适配
-   ==================== */
+/* =========================
+   手机
+   ========================= */
 
 @media (max-width: 700px) {
 
+
     nav {
-        padding: 15px 20px;
+
+        padding:
+            15px 20px;
+
     }
+
+
+    .logo {
+
+        font-size: 18px;
+
+    }
+
+
+    .nav-links {
+
+        gap: 12px;
+
+    }
+
 
     .nav-links a {
-        margin-left: 10px;
 
         font-size: 14px;
+
     }
+
+
+    .hero {
+
+        min-height: 600px;
+
+    }
+
 
     .hero h1 {
+
         font-size: 38px;
+
     }
 
+
     .hero p {
+
         font-size: 18px;
+
+    }
+
+
+    .about {
+
+        padding:
+            80px 20px;
+
+    }
+
+
+    .about h2 {
+
+        font-size: 32px;
+
+    }
+
+
+    .projects {
+
+        padding:
+            80px 20px;
+
+    }
+
+
+    .projects h2 {
+
+        font-size: 32px;
+
+    }
+
+
+    .about-card {
+
+        width: 100%;
+
+        max-width: 330px;
+
+    }
+
+
+    .project-card {
+
+        width: 100%;
+
+        max-width: 330px;
+
+    }
+
+
+    .sub-page {
+
+        margin:
+            30px 15px;
+
+        padding:
+            35px 20px;
+
+    }
+
+
+    .sub-page h1 {
+
+        font-size: 32px;
+
     }
 
 }

@@ -2,83 +2,223 @@
 <html lang="zh-CN">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>豪情在天的个人网站</title>
+    <title>瑶的个人网站</title>
+
+
+    <!-- 防止绕过登录页面 -->
 
     <script>
-    if (sessionStorage.getItem("loggedIn") !== "true") {
-        window.location.href = "login.html";
-    }
+
+        if (
+            sessionStorage.getItem("loggedIn")
+            !== "true"
+        ) {
+
+            window.location.href =
+                "./login.html";
+
+        }
+
     </script>
 
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
+
 <body>
+
 
     <!-- 导航栏 -->
 
     <nav>
 
         <div class="logo">
-            豪情在天的个人网站
+            瑶的个人网站
         </div>
+
 
         <div class="nav-links">
 
-            <a href=" ">首页</a >
+            <a href=" ">
+                首页
+            </a >
 
-            <a href="#about">关于我</a >
+            <a href="#about">
+                关于我
+            </a >
 
-            <a href="#projects">我的项目</a >
+            <a href="#projects">
+                我的项目
+            </a >
 
         </div>
 
     </nav>
 
 
+
     <!-- 首页 -->
 
-    <section id="home" class="hero">
+    <section
+        id="home"
+        class="hero"
+    >
 
-        <h1>你好，我是豪 👋</h1>
+        <h1>
+            你好，我是瑶 👋
+        </h1>
 
         <p>
-            唱 · 跳 · RAP · 篮球
+            Python · OpenCV · AI · 网页开发
         </p >
 
-        <button onclick="goToProjects()">
+        <button
+            onclick="goToProjects()"
+        >
             查看我的项目
         </button>
 
     </section>
 
 
+
     <!-- 关于我 -->
 
-    <section id="about" class="about">
+    <section
+        id="about"
+        class="about"
+    >
 
-        <h2>关于我</h2>
+        <h2>
+            关于我
+        </h2>
 
         <p>
-            我正在学习 唱、跳、RAP和篮球。
+            我正在学习 Python、OpenCV、
+            人工智能和网页开发。
         </p >
 
         <p>
-            希望通过不断努力，实现自己的梦想。
+            希望通过不断学习，
+            把自己的想法真正做成项目。
         </p >
+
+
+        <!-- 三个跳转容器 -->
+
+        <div class="about-container">
+
+
+            <!-- 联系方式 -->
+
+            <a
+                href="contact.html"
+                class="about-card"
+            >
+
+                <div class="about-icon">
+                    📞
+                </div>
+
+                <h3>
+                    联系方式
+                </h3>
+
+                <p>
+                    查看我的联系方式
+                </p >
+
+                <span class="read-more">
+                    点击进入 →
+                </span>
+
+            </a >
+
+
+
+            <!-- 我的历程 -->
+
+            <a
+                href="journey.html"
+                class="about-card"
+            >
+
+                <div class="about-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    我的历程
+                </h3>
+
+                <p>
+                    查看我的学习与成长历程
+                </p >
+
+                <span class="read-more">
+                    点击进入 →
+                </span>
+
+            </a >
+
+
+
+            <!-- 兴趣爱好 -->
+
+            <a
+                href="hobbies.html"
+                class="about-card"
+            >
+
+                <div class="about-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    兴趣爱好
+                </h3>
+
+                <p>
+                    查看我的兴趣与爱好
+                </p >
+
+                <span class="read-more">
+                    点击进入 →
+                </span>
+
+            </a >
+
+
+        </div>
 
     </section>
 
 
-    <!-- 项目 -->
 
-    <section id="projects" class="projects">
+    <!-- 我的项目 -->
 
-        <h2>我的项目</h2>
+    <section
+        id="projects"
+        class="projects"
+    >
+
+        <h2>
+            我的项目
+        </h2>
+
 
         <div class="project-container">
 
@@ -89,13 +229,17 @@
                     🤖
                 </div>
 
-                <h3>唱</h3>
+                <h3>
+                    AI 项目
+                </h3>
 
                 <p>
-                    只因你太美
+                    学习人工智能，
+                    并尝试开发自己的 AI 应用。
                 </p >
 
             </div>
+
 
 
             <div class="project-card">
@@ -104,13 +248,17 @@
                     👁️
                 </div>
 
-                <h3>跳</h3>
+                <h3>
+                    OpenCV
+                </h3>
 
                 <p>
-                    
+                    学习计算机视觉、
+                    人脸检测和图像处理。
                 </p >
 
             </div>
+
 
 
             <div class="project-card">
@@ -119,10 +267,13 @@
                     🔐
                 </div>
 
-                <h3>RAP和篮球</h3>
+                <h3>
+                    AI 智能门禁
+                </h3>
 
                 <p>
-                    曾担任NBA新春贺岁形象大使
+                    未来开发一个
+                    AI 智能住宅门禁系统。
                 </p >
 
             </div>
@@ -133,15 +284,17 @@
     </section>
 
 
+
     <!-- 页脚 -->
 
     <footer>
 
         <p>
-            © 2026 豪情在天的个人网站
+            © 2026 瑶的个人网站
         </p >
 
     </footer>
+
 
 
     <script src="script.js"></script>
