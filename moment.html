@@ -361,4 +361,339 @@
                 data,
                 error
             } =
-                await supabase.auth.signIn
+                await supabase.auth.signInWithPassword({
+
+                    email: email,
+
+                    password: password
+
+                });
+
+
+            if (error) {
+
+                document.getElementById("loginStatus").textContent =
+                    "登录失败：" + error.message;
+
+                return;
+            }
+
+
+            document.getElementById("loginStatus").textContent =
+                "✅ 管理员登录成功";
+
+
+            document.getElementById("publishArea").style.display =
+                "block";
+
+        };
+
+
+        /*
+         * ==========================
+         * 检查当前登录状态
+         * ==========================
+         */
+
+        async function checkUser() {
+
+            const {
+                data
+            } =
+                await supabase.auth.getUser();
+
+
+            if (data.user) {
+
+                document.getElementById("publishArea").style.display =
+                    "block";
+
+                document.getElementById("loginStatus").textContent =
+                    "✅ 已登录：" + data.user.email;
+
+            }
+
+        }
+
+
+        /*
+         * ==========================
+         * 发布 Moment
+         * ==========================
+         */
+
+        window.publishMoment = async function () {
+
+            const content =
+                document.getElementById("content").value.trim();
+
+            const imageFile =
+                document.getElementById("image").files[0];
+
+
+            if (!content && !imageFile) {
+
+                document.getElementById("status").textContent =
+                    "请输入文字或者选择一张图片。";
+
+                return;
+            }
+
+
+            document.getElementById("status").textContent =
+                "正在发布……";
+
+
+            let imageUrl = null;
+
+
+            /*
+             * 上传图片
+             */
+
+            if (imageFile) {
+
+                const fileName =
+                    Date.now()
+                    + "_"
+                    + imageFile.name;
+
+
+                const {
+                    error: uploadError
+                } =
+                    await supabase.storage
+                    .from("moment")
+                    .upload(
+                        fileName,
+                        imageFile
+                    );
+
+
+                if (uploadError) {
+
+                    document.getElementById("status").textContent =
+                        "图片上传失败：" + uploadError.message;
+
+                    return;
+                }
+
+
+                const {
+                    data: publicUrlData
+                } =
+                    supabase.storage
+                    .from("moment")
+                    .getPublicUrl(fileName);
+
+
+                imageUrl =
+                    publicUrlData.publicUrl;
+
+            }
+
+
+            /*
+             * 写入 moments 表
+             */
+
+            const {
+                error
+            } =
+                await supabase
+                .from("moments")
+                .insert({
+
+                    content: content,
+
+                    image_url: imageUrl
+
+                });
+
+
+            if (error) {
+
+                document.getElementById("status").textContent =
+                    "发布失败：" + error.message;
+
+                return;
+            }
+
+
+            document.getElementById("status").textContent =
+                "✅ 发布成功！";
+
+
+            document.getElementById("content").value = "";
+
+            document.getElementById("image").value = "";
+
+
+            loadMoments();
+
+        };
+
+
+        /*
+         * ==========================
+         * 加载 Moment
+         * ==========================
+         */
+
+        async function loadMoments() {
+
+            const {
+                data,
+                error
+            } =
+                await supabase
+                .from("moments")
+                .select("*")
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+
+            const list =
+                document.getElementById("momentList");
+
+
+            if (error) {
+
+                list.innerHTML =
+                    `<div class="empty">
+                        加载失败：${error.message}
+                    </div>`;
+
+                return;
+            }
+
+
+            if (!data || data.length === 0) {
+
+                list.innerHTML =
+                    `<div class="empty">
+                        还没有 Moment，留下第一条记录吧。
+                    </div>`;
+
+                return;
+            }
+
+
+            list.innerHTML = "";
+
+
+            data.forEach(moment => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "moment-card";
+
+
+                let html = "";
+
+
+                if (moment.content) {
+
+                    html +=
+                        `<div class="moment-content">
+                            ${escapeHtml(moment.content)}
+                        </div>`;
+
+                }
+
+
+                if (moment.image_url) {
+
+                    html +=
+                        `<img
+                            class="moment-image"
+                            src="${moment.image_url}"
+                            alt="Moment 图片"
+                        >`;
+
+                }
+
+
+                const time =
+                    new Date(
+                        moment.created_at
+                    ).toLocaleString(
+                        "zh-CN"
+                    );
+
+
+                html +=
+                    `<div class="moment-time">
+                        ${time}
+                    </div>`;
+
+
+                card.innerHTML =
+                    html;
+
+
+                list.appendChild(card);
+
+            });
+
+        }
+
+
+        /*
+         * ==========================
+         * HTML 转义
+         * 防止用户输入 HTML
+         * ==========================
+         */
+
+        function escapeHtml(text) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent =
+                text;
+
+            return div.innerHTML;
+
+        }
+
+
+        /*
+         * ==========================
+         * 管理员退出
+         * ==========================
+         */
+
+        window.logoutAdmin = async function () {
+
+            await supabase.auth.signOut();
+
+            document.getElementById("publishArea").style.display =
+                "none";
+
+            document.getElementById("loginStatus").textContent =
+                "已退出管理员账号。";
+
+        };
+
+
+        /*
+         * 启动
+         */
+
+        checkUser();
+
+        loadMoments();
+
+    </script>
+
+</body>
+
+</html>
