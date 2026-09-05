@@ -1,312 +1,4 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Moment - 瑶</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        .moment-page {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .moment-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .moment-title h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .moment-title p {
-            color: #666;
-        }
-
-        /* 发布区域 */
-
-        .publish-box {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 30px;
-            border-radius: 18px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .publish-box textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            resize: vertical;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        .publish-box input[type="file"] {
-            margin-top: 15px;
-        }
-
-        .publish-button {
-            margin-top: 20px;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            background: #222;
-            color: white;
-            cursor: pointer;
-        }
-
-        .publish-button:hover {
-            background: #444;
-        }
-
-        .login-admin {
-            margin-bottom: 20px;
-        }
-
-        .admin-login {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .admin-login input {
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 180px;
-        }
-
-        .admin-login button {
-            margin-top: 0;
-        }
-
-        #status {
-            margin-top: 15px;
-            color: #666;
-        }
-
-        /* Moment 卡片 */
-
-        .moment-card {
-            background: rgba(255, 255, 255, 0.92);
-            border-radius: 18px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .moment-content {
-            font-size: 17px;
-            line-height: 1.8;
-            white-space: pre-wrap;
-        }
-
-        .moment-image {
-            width: 100%;
-            max-height: 600px;
-            object-fit: contain;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-
-        .moment-time {
-            margin-top: 15px;
-            color: #888;
-            font-size: 14px;
-        }
-
-        .delete-button {
-            margin-top: 15px;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 7px;
-            background: #d33;
-            color: white;
-            cursor: pointer;
-        }
-
-        .empty {
-            text-align: center;
-            color: #777;
-            padding: 50px;
-        }
-
-        .back-home {
-            display: block;
-            text-align: center;
-            margin-top: 50px;
-        }
-    </style>
-</head>
-
-
-<body>
-
-    <nav>
-
-        <div class="logo">
-            瑶的个人网站
-        </div>
-
-        <div class="nav-links">
-
-            <a href=" ">
-                首页
-            </a >
-
-            <a href="index.html#about">
-                关于我
-            </a >
-
-            <a href="journey.html">
-                我的历程
-            </a >
-
-        </div>
-
-    </nav>
-
-
-    <main class="moment-page">
-
-        <div class="moment-title">
-
-            <h1>📷 Moment</h1>
-
-            <p>
-                记录一些值得留下来的瞬间
-            </p >
-
-        </div>
-
-
-        <!-- 管理员登录 -->
-
-        <div class="publish-box">
-
-            <h2>🔐 管理员</h2>
-
-            <p>
-                登录后可以发布 Moment。
-            </p >
-
-            <div class="admin-login">
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="管理员邮箱"
-                >
-
-                <input
-                    type="password"
-                    id="adminPassword"
-                    placeholder="管理员密码"
-                >
-
-                <button
-                    class="publish-button"
-                    onclick="adminLogin()"
-                >
-                    管理员登录
-                </button>
-
-            </div>
-
-            <div id="loginStatus"></div>
-
-        </div>
-
-
-        <!-- 发布区域 -->
-
-        <div
-            class="publish-box"
-            id="publishArea"
-            style="display:none;"
-        >
-
-            <h2>✍️ 发布 Moment</h2>
-
-            <textarea
-                id="content"
-                placeholder="记录一下现在的想法……"
-            ></textarea>
-
-            <br>
-
-            <input
-                type="file"
-                id="image"
-                accept="image/*"
-            >
-
-            <br>
-
-            <button
-                class="publish-button"
-                onclick="publishMoment()"
-            >
-                发布 Moment
-            </button>
-
-            <button
-                class="publish-button"
-                onclick="logoutAdmin()"
-            >
-                退出管理员
-            </button>
-
-            <div id="status"></div>
-
-        </div>
-
-
-        <!-- Moment 列表 -->
-
-        <div id="momentList">
-
-            <div class="empty">
-                正在加载 Moment...
-            </div>
-
-        </div>
-
-
-        <a
-            href="index.html"
-            class="back-home"
-        >
-            ← 返回首页
-        </a >
-
-    </main>
-
-
-    <footer>
-
-        <p>
-            © 2026 瑶的个人网站
-        </p >
-
-    </footer>
-
-
-    <script type="module">
-
-        import {
-            createClient
+@@ -310,50 +310,53 @@
         }
         from
         "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -331,6 +23,9 @@
                 SUPABASE_URL,
                 SUPABASE_KEY
             );
+
+        // 访客可以浏览；只有完成 Supabase 管理员登录的用户才显示管理操作。
+        let isAdmin = false;
 
 
         /*
@@ -357,10 +52,7 @@
             }
 
 
-            const {
-                data,
-                error
-            } =
+@@ -364,69 +367,75 @@
                 await supabase.auth.signInWithPassword({
 
                     email: email,
@@ -386,6 +78,10 @@
             document.getElementById("publishArea").style.display =
                 "block";
 
+            isAdmin = true;
+
+            loadMoments();
+
         };
 
 
@@ -404,6 +100,8 @@
 
 
             if (data.user) {
+
+                isAdmin = true;
 
                 document.getElementById("publishArea").style.display =
                     "block";
@@ -430,185 +128,7 @@
             const imageFile =
                 document.getElementById("image").files[0];
 
-
-            if (!content && !imageFile) {
-
-                document.getElementById("status").textContent =
-                    "请输入文字或者选择一张图片。";
-
-                return;
-            }
-
-
-            document.getElementById("status").textContent =
-                "正在发布……";
-
-
-            let imageUrl = null;
-
-
-            /*
-             * 上传图片
-             */
-
-            if (imageFile) {
-
-                const fileName =
-                    Date.now()
-                    + "_"
-                    + imageFile.name;
-
-
-                const {
-                    error: uploadError
-                } =
-                    await supabase.storage
-                    .from("moment")
-                    .upload(
-                        fileName,
-                        imageFile
-                    );
-
-
-                if (uploadError) {
-
-                    document.getElementById("status").textContent =
-                        "图片上传失败：" + uploadError.message;
-
-                    return;
-                }
-
-
-                const {
-                    data: publicUrlData
-                } =
-                    supabase.storage
-                    .from("moment")
-                    .getPublicUrl(fileName);
-
-
-                imageUrl =
-                    publicUrlData.publicUrl;
-
-            }
-
-
-            /*
-             * 写入 moments 表
-             */
-
-            const {
-                error
-            } =
-                await supabase
-                .from("moments")
-                .insert({
-
-                    content: content,
-
-                    image_url: imageUrl
-
-                });
-
-
-            if (error) {
-
-                document.getElementById("status").textContent =
-                    "发布失败：" + error.message;
-
-                return;
-            }
-
-
-            document.getElementById("status").textContent =
-                "✅ 发布成功！";
-
-
-            document.getElementById("content").value = "";
-
-            document.getElementById("image").value = "";
-
-
-            loadMoments();
-
-        };
-
-
-        /*
-         * ==========================
-         * 加载 Moment
-         * ==========================
-         */
-
-        async function loadMoments() {
-
-            const {
-                data,
-                error
-            } =
-                await supabase
-                .from("moments")
-                .select("*")
-                .order(
-                    "created_at",
-                    {
-                        ascending: false
-                    }
-                );
-
-
-            const list =
-                document.getElementById("momentList");
-
-
-            if (error) {
-
-                list.innerHTML =
-                    `<div class="empty">
-                        加载失败：${error.message}
-                    </div>`;
-
-                return;
-            }
-
-
-            if (!data || data.length === 0) {
-
-                list.innerHTML =
-                    `<div class="empty">
-                        还没有 Moment，留下第一条记录吧。
-                    </div>`;
-
-                return;
-            }
-
-
-            list.innerHTML = "";
-
-
-            data.forEach(moment => {
-
-                const card =
-                    document.createElement("div");
-
-                card.className =
-                    "moment-card";
-
-
-                let html = "";
-
-
-                if (moment.content) {
-
-                    html +=
-                        `<div class="moment-content">
-                            ${escapeHtml(moment.content)}
-                        </div>`;
-
-                }
-
-
-                if (moment.image_url) {
+@@ -612,88 +621,169 @@
 
                     html +=
                         `<img
@@ -634,8 +154,36 @@
                     </div>`;
 
 
+                if (isAdmin) {
+
+                    html +=
+                        `<button
+                            class="delete-button"
+                            type="button"
+                            data-moment-id="${moment.id}"
+                        >
+                            删除这条 Moment
+                        </button>`;
+
+                }
+
+
                 card.innerHTML =
                     html;
+
+
+                const deleteButton =
+                    card.querySelector(".delete-button");
+
+
+                if (deleteButton) {
+
+                    deleteButton.addEventListener(
+                        "click",
+                        () => deleteMoment(moment.id)
+                    );
+
+                }
 
 
                 list.appendChild(card);
@@ -678,10 +226,63 @@
             document.getElementById("publishArea").style.display =
                 "none";
 
+            isAdmin = false;
+
             document.getElementById("loginStatus").textContent =
                 "已退出管理员账号。";
 
+            loadMoments();
+
         };
+
+
+        /*
+         * ==========================
+         * 删除 Moment
+         * ==========================
+         */
+
+        async function deleteMoment(id) {
+
+            if (!isAdmin) {
+
+                return;
+
+            }
+
+
+            if (!window.confirm("确定要删除这条 Moment 吗？此操作无法撤销。")) {
+
+                return;
+
+            }
+
+
+            const {
+                error
+            } =
+                await supabase
+                .from("moments")
+                .delete()
+                .eq("id", id);
+
+
+            if (error) {
+
+                document.getElementById("status").textContent =
+                    "删除失败：" + error.message;
+
+                return;
+
+            }
+
+
+            document.getElementById("status").textContent =
+                "✅ 已删除 Moment。";
+
+            loadMoments();
+
+        }
 
 
         /*
